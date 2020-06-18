@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KNMigrationTutorialViewController" customModule="KyberSwap___Crypto_Exchange" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fx0-Yf-ZMz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to migration to new IOS app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i70-uH-SkP">
+                            <rect key="frame" x="20" y="41" width="264" height="21"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOg-BG-70Q">
+                            <rect key="frame" x="325" y="33.5" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="0yi-IC-nAs"/>
+                                <constraint firstAttribute="width" constant="36" id="Aip-LM-Aal"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                            <state key="normal" image="close_white_icon"/>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="-1" eventType="touchUpInside" id="FOH-bQ-Q7a"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.6705882353" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="i70-uH-SkP" firstAttribute="leading" secondItem="Fx0-Yf-ZMz" secondAttribute="leading" constant="20" id="1Er-nr-UGl"/>
+                        <constraint firstAttribute="trailing" secondItem="nOg-BG-70Q" secondAttribute="trailing" constant="14" id="9xY-AP-gur"/>
+                        <constraint firstAttribute="height" constant="82" id="dzd-Sf-wg0"/>
+                        <constraint firstItem="i70-uH-SkP" firstAttribute="top" secondItem="Fx0-Yf-ZMz" secondAttribute="top" constant="41" id="sxb-CV-KGQ"/>
+                        <constraint firstItem="nOg-BG-70Q" firstAttribute="centerY" secondItem="i70-uH-SkP" secondAttribute="centerY" id="wR7-dZ-utM"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18t-se-Vhx">
+                    <rect key="frame" x="0.0" y="82" width="375" height="36"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="ug6-GW-3wl"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6I-de-P1Z">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="XE2-dT-C8g"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" red="1" green="0.56470588235294117" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFE-h0-bbo">
+                    <rect key="frame" x="0.0" y="616" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="EdV-fs-uks"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="P6I-de-P1Z" firstAttribute="top" secondItem="hFE-h0-bbo" secondAttribute="bottom" id="DjJ-PC-6qQ"/>
+                <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MZ6-NQ-z63"/>
+                <constraint firstItem="18t-se-Vhx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QjE-5Y-ZoV"/>
+                <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T9u-7R-fLa"/>
+                <constraint firstItem="hFE-h0-bbo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U6B-A4-h5l"/>
+                <constraint firstItem="P6I-de-P1Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dV6-wK-iwh"/>
+                <constraint firstItem="18t-se-Vhx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ePc-4u-7GS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hFE-h0-bbo" secondAttribute="trailing" id="gL7-8k-YoG"/>
+                <constraint firstItem="18t-se-Vhx" firstAttribute="top" secondItem="Fx0-Yf-ZMz" secondAttribute="bottom" id="iAe-Vj-AnF"/>
+                <constraint firstItem="P6I-de-P1Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kHB-ld-2ko"/>
+                <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="qkv-4j-Ueh"/>
+                <constraint firstItem="P6I-de-P1Z" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="tXi-IS-5iT"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="132" y="147.97601199400302"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close_white_icon" width="24" height="24"/>
+    </resources>
+</document>

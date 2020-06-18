@@ -161,7 +161,24 @@ extension KNLandingPageCoordinator: KNLandingPageViewControllerDelegate {
     case .openTermAndCondition:
       let url: String = "https://files.kyberswap.com/tac.pdf"
       self.navigationController.topViewController?.openSafari(with: url)
+    case .openMigrationAlert:
+      self.openMigrationAlert()
     }
+  }
+
+  fileprivate func openMigrationAlert() {
+    let alert = KNPrettyAlertController(
+      title: "Information".toBeLocalised(),
+      message: "Do you have wallet for old IOS app and want to know how to migration it?".toBeLocalised(),
+      secondButtonTitle: "No".toBeLocalised(),
+      firstButtonTitle: "Ok".toBeLocalised(),
+      secondButtonAction: nil) {
+        self.navigationController.dismiss(animated: true) {
+          let tutorialVC = KNMigrationTutorialViewController()
+          self.navigationController.present(tutorialVC, animated: true, completion: nil)
+        }
+      }
+    self.navigationController.present(alert, animated: true, completion: nil)
   }
 }
 
