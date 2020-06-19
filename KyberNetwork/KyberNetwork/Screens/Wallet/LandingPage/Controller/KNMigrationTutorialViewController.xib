@@ -18,6 +18,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KNMigrationTutorialViewController" customModule="KyberSwap___Crypto_Exchange" customModuleProvider="target">
             <connections>
+                <outlet property="finalStepBottomLabel" destination="fug-HY-mWK" id="5af-JV-G1N"/>
+                <outlet property="finalStepContainerView" destination="yup-s9-fU3" id="fDw-tr-KmM"/>
+                <outlet property="finalStepContent1Label" destination="I9v-as-LQr" id="Lwz-G6-g41"/>
+                <outlet property="finalStepContent2Label" destination="p0M-af-dOb" id="KbV-II-y9K"/>
+                <outlet property="finalStepHeaderLabel" destination="aPW-2e-CSr" id="ovo-eo-ima"/>
+                <outlet property="finalStepOptionalLabel" destination="cHa-sW-5ve" id="7Dq-SW-gXw"/>
                 <outlet property="headerTitleLabel" destination="i70-uH-SkP" id="vbC-OG-qkq"/>
                 <outlet property="nextBottomButton" destination="P6I-de-P1Z" id="tnY-sZ-a6b"/>
                 <outlet property="nextButton" destination="HmE-uU-hMw" id="pkU-EF-bOt"/>
@@ -37,7 +43,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to migration to new IOS app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i70-uH-SkP">
-                            <rect key="frame" x="20" y="41" width="264" height="21"/>
+                            <rect key="frame" x="20" y="41" width="269" height="21"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -68,7 +74,7 @@
                     <rect key="frame" x="0.0" y="82" width="375" height="36"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy8-eP-pX8">
-                            <rect key="frame" x="108" y="8" width="159" height="20"/>
+                            <rect key="frame" x="107" y="8" width="161" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-R8-gBu">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -82,7 +88,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup your wallets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDE-3d-dqs">
-                                    <rect key="frame" x="34" y="0.0" width="125" height="20"/>
+                                    <rect key="frame" x="34" y="0.0" width="127" height="20"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <color key="textColor" red="0.3529411764705882" green="0.36862745098039218" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -162,12 +168,89 @@
                         <outlet property="delegate" destination="-1" id="KLw-UI-XMK"/>
                     </connections>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yup-s9-fU3">
+                    <rect key="frame" x="0.0" y="118" width="375" height="498"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Within this New KyberSwap app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPW-2e-CSr">
+                            <rect key="frame" x="101" y="16" width="173" height="14"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                            <color key="textColor" red="0.35294117650000001" green="0.36862745099999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jft-3U-xPg">
+                            <rect key="frame" x="135" y="106.5" width="240" height="119"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure your wallet address and balance of your tokens are all correct." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-as-LQr">
+                                    <rect key="frame" x="36" y="22" width="187" height="75"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="I9v-as-LQr" firstAttribute="top" secondItem="Jft-3U-xPg" secondAttribute="top" constant="22" id="LrY-2e-0Vg"/>
+                                <constraint firstAttribute="trailing" secondItem="I9v-as-LQr" secondAttribute="trailing" constant="17" id="WQ1-K1-qJi"/>
+                                <constraint firstAttribute="height" constant="119" id="so2-Io-3CE"/>
+                                <constraint firstAttribute="bottom" secondItem="I9v-as-LQr" secondAttribute="bottom" constant="22" id="uYP-gy-TkS"/>
+                                <constraint firstItem="I9v-as-LQr" firstAttribute="leading" secondItem="Jft-3U-xPg" secondAttribute="leading" constant="36" id="yYC-zL-F0M"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial_3_1" translatesAutoresizingMaskIntoConstraints="NO" id="Og7-7a-Y8T">
+                            <rect key="frame" x="13" y="56" width="173" height="260"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Optional" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHa-sW-5ve">
+                            <rect key="frame" x="26" y="320" width="53" height="17"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                            <color key="textColor" red="0.078431372549019607" green="0.098039215686274508" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make a simple transfer/swap transaction to make sure everything is working as expected." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0M-af-dOb">
+                            <rect key="frame" x="43" y="348" width="305" height="33.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send email to support@kyberswap.com if you have any issues." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-HY-mWK">
+                            <rect key="frame" x="14" y="455" width="347" height="14"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="QLT-LE-WW3" appends="YES" id="QnN-xd-ALX"/>
+                            </connections>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.88235294119999996" green="0.89411764709999997" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="fug-HY-mWK" secondAttribute="bottom" constant="29" id="6nT-Ir-nqq"/>
+                        <constraint firstItem="cHa-sW-5ve" firstAttribute="top" secondItem="Og7-7a-Y8T" secondAttribute="bottom" constant="4" id="BXS-HV-0Pb"/>
+                        <constraint firstAttribute="trailing" secondItem="Jft-3U-xPg" secondAttribute="trailing" id="IDT-Y9-y7G"/>
+                        <constraint firstItem="cHa-sW-5ve" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="26" id="L8u-EO-BBY"/>
+                        <constraint firstAttribute="trailing" secondItem="fug-HY-mWK" secondAttribute="trailing" constant="14" id="S5l-6c-nNJ"/>
+                        <constraint firstAttribute="trailing" secondItem="p0M-af-dOb" secondAttribute="trailing" constant="27" id="Wou-7L-wQd"/>
+                        <constraint firstItem="p0M-af-dOb" firstAttribute="top" secondItem="cHa-sW-5ve" secondAttribute="bottom" constant="11" id="XO0-J5-XcM"/>
+                        <constraint firstItem="Og7-7a-Y8T" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="13" id="Zqv-zB-rjM"/>
+                        <constraint firstItem="aPW-2e-CSr" firstAttribute="centerX" secondItem="yup-s9-fU3" secondAttribute="centerX" id="iAA-hV-MEt"/>
+                        <constraint firstItem="Jft-3U-xPg" firstAttribute="centerY" secondItem="Og7-7a-Y8T" secondAttribute="centerY" constant="-20" id="if0-uw-eJz"/>
+                        <constraint firstItem="Og7-7a-Y8T" firstAttribute="top" secondItem="aPW-2e-CSr" secondAttribute="bottom" constant="26" id="pjR-qg-Hy6"/>
+                        <constraint firstItem="p0M-af-dOb" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="43" id="urM-rT-ZTw"/>
+                        <constraint firstItem="fug-HY-mWK" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="14" id="vIB-yY-1Rg"/>
+                        <constraint firstItem="aPW-2e-CSr" firstAttribute="top" secondItem="yup-s9-fU3" secondAttribute="top" constant="16" id="x4I-WX-Xye"/>
+                        <constraint firstItem="Jft-3U-xPg" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="135" id="zHo-06-xo2"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
             <constraints>
+                <constraint firstItem="yup-s9-fU3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="BIY-ep-joc"/>
                 <constraint firstItem="P6I-de-P1Z" firstAttribute="top" secondItem="hFE-h0-bbo" secondAttribute="bottom" id="DjJ-PC-6qQ"/>
+                <constraint firstItem="yup-s9-fU3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hhm-Gu-Cu9"/>
                 <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MZ6-NQ-z63"/>
                 <constraint firstItem="18t-se-Vhx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QjE-5Y-ZoV"/>
+                <constraint firstItem="yup-s9-fU3" firstAttribute="top" secondItem="18t-se-Vhx" secondAttribute="bottom" id="SrR-09-d5P"/>
                 <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T9u-7R-fLa"/>
                 <constraint firstItem="hFE-h0-bbo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U6B-A4-h5l"/>
                 <constraint firstItem="P6I-de-P1Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dV6-wK-iwh"/>
@@ -178,18 +261,28 @@
                 <constraint firstItem="18t-se-Vhx" firstAttribute="top" secondItem="Fx0-Yf-ZMz" secondAttribute="bottom" id="iAe-Vj-AnF"/>
                 <constraint firstItem="CRY-x3-IgC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jUU-8D-2ZZ"/>
                 <constraint firstItem="P6I-de-P1Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kHB-ld-2ko"/>
+                <constraint firstItem="hFE-h0-bbo" firstAttribute="top" secondItem="yup-s9-fU3" secondAttribute="bottom" id="n1W-vi-JSG"/>
                 <constraint firstItem="Fx0-Yf-ZMz" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="qkv-4j-Ueh"/>
                 <constraint firstItem="P6I-de-P1Z" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="tXi-IS-5iT"/>
                 <constraint firstItem="CRY-x3-IgC" firstAttribute="top" secondItem="18t-se-Vhx" secondAttribute="bottom" id="y6l-9o-OyT"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="QLT-LE-WW3" appends="YES" id="MIb-4r-68V"/>
+            </connections>
             <point key="canvasLocation" x="132" y="147.97601199400302"/>
         </view>
+        <tapGestureRecognizer id="QLT-LE-WW3">
+            <connections>
+                <action selector="contactLabelTapped:" destination="-1" id="pAc-h9-6Gf"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="arrow_back_icon" width="16" height="16"/>
         <image name="arrow_foward_icon" width="16" height="16"/>
         <image name="close_white_icon" width="24" height="24"/>
+        <image name="tutorial_3_1" width="173" height="260"/>
     </resources>
 </document>

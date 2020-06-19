@@ -2,6 +2,7 @@
 
 import UIKit
 import FSPagerView
+import MessageUI
 
 class KNMigrationTutorialViewModel {
   var currentStep: Int = 1
@@ -76,8 +77,7 @@ class KNMigrationTutorialViewModel {
   var step2ToolBarTitle: String {
     return "Use your backup to import wallet "
   }
-  
-  
+
   var step3HeaderTitle: String {
     return "Within this New KyberSwap app"
   }
@@ -86,6 +86,67 @@ class KNMigrationTutorialViewModel {
     return "Check your Balance"
   }
   
+  var optionalContentString: NSAttributedString {
+    let stringList = [
+      "Make a simple transfer/swap transaction to make sure everything is working as expected.",
+      "You can either keep or delete the old iOS app."
+    ]
+    let indentation: CGFloat = 20
+    let lineSpacing: CGFloat = 2
+    let paragraphSpacing: CGFloat = 12
+    let bullet: String = "\u{2022}"
+    let bulletAttributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.foregroundColor: UIColor.Kyber.orange, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20)]
+    let textAttributes: [NSAttributedStringKey: Any] = [
+      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+      .kern: 0.0,
+    ]
+    let paragraphStyle = NSMutableParagraphStyle()
+    let nonOptions = [NSTextTab.OptionKey: Any]()
+    paragraphStyle.tabStops = [
+      NSTextTab(textAlignment: .left,
+                location: indentation,
+                options: nonOptions
+      )
+    ]
+    paragraphStyle.defaultTabInterval = indentation
+    paragraphStyle.lineSpacing = lineSpacing
+    paragraphStyle.paragraphSpacing = paragraphSpacing
+    paragraphStyle.headIndent = indentation
+    let bulletList = NSMutableAttributedString()
+    for string in stringList {
+      let formattedString = "\(bullet)\t\(string)\n"
+      let attributedString = NSMutableAttributedString(string: formattedString)
+      
+      attributedString.addAttributes(
+        [NSAttributedStringKey.paragraphStyle : paragraphStyle],
+        range: NSMakeRange(0, attributedString.length)
+      )
+      
+      attributedString.addAttributes(
+        textAttributes,
+        range: NSMakeRange(0, attributedString.length)
+      )
+      
+      let string:NSString = NSString(string: formattedString)
+      let rangeForBullet:NSRange = string.range(of: bullet)
+      attributedString.addAttributes(bulletAttributes, range: rangeForBullet)
+      bulletList.append(attributedString)
+    }
+    
+    return bulletList
+  }
+
+  var bottomContactText: NSAttributedString {
+    let attributedString = NSMutableAttributedString(string: "Send email to support@kyberswap.com if you have any issues.", attributes: [
+      .font: UIFont(name: "Roboto-Regular", size: 12.0)!,
+      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+      .kern: 0.0
+    ])
+    attributedString.addAttribute(.foregroundColor, value: UIColor.Kyber.orange, range: NSRange(location: 14, length: 21))
+    
+    return attributedString
+  }
 }
 
 class KNMigrationTutorialViewController: KNBaseViewController {
@@ -100,8 +161,14 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   @IBOutlet weak var nextButton: UIButton!
   @IBOutlet weak var previousButton: UIButton!
   @IBOutlet weak var nextBottomButton: UIButton!
-  
-  
+
+  @IBOutlet weak var finalStepContainerView: UIView!
+  @IBOutlet weak var finalStepHeaderLabel: UILabel!
+  @IBOutlet weak var finalStepContent1Label: UILabel!
+  @IBOutlet weak var finalStepOptionalLabel: UILabel!
+  @IBOutlet weak var finalStepContent2Label: UILabel!
+  @IBOutlet weak var finalStepBottomLabel: UILabel!
+
   var viewModel: KNMigrationTutorialViewModel
 
   init(viewModel: KNMigrationTutorialViewModel) {
@@ -117,6 +184,9 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.stepIndicatorLabel.rounded(radius: self.stepIndicatorLabel.frame.size.height / 2)
+    self.finalStepContent2Label.attributedText = self.viewModel.optionalContentString
+    self.finalStepBottomLabel.attributedText = self.viewModel.bottomContactText
+    self.view.sendSubview(toBack: self.finalStepContainerView)
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -127,10 +197,13 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   @IBAction func closeButtonTapped(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
   }
-  
+
   @IBAction func previousStepButtonTapped(_ sender: UIButton) {
     guard self.viewModel.currentStep > 1 else {
       return
+    }
+    if self.viewModel.currentStep == 3 {
+      self.view.bringSubview(toFront: self.pagerContainerView)
     }
     self.viewModel.currentStep -= 1
     self.nextButton.isEnabled = true
@@ -140,7 +213,7 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.refreshUI()
     self.pagerContainerView.reloadData()
   }
-  
+
   @IBAction func nextStepButtonTapped(_ sender: UIButton) {
     guard self.viewModel.currentStep < 3 else {
       return
@@ -149,17 +222,22 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.previousButton.isEnabled = true
     if self.viewModel.currentStep == 3 {
       self.nextButton.isEnabled = false
+      self.view.bringSubview(toFront: self.finalStepContainerView)
     }
     self.refreshUI()
     self.pagerContainerView.reloadData()
   }
-  
+
   @IBAction func nextButtonTapped(_ sender: UIButton) {
     guard self.viewModel.currentStep < 3 else {
       return
     }
   }
-  
+
+  @IBAction func contactLabelTapped(_ sender: UITapGestureRecognizer) {
+    //TODO: open mail
+  }
+
   fileprivate func refreshUI() {
     switch self.viewModel.currentStep {
     case 1:
@@ -168,6 +246,9 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     case 2:
       self.stepIndicatorLabel.text = "2"
       self.pageNameLabel.text = self.viewModel.step2ToolBarTitle
+    case 3:
+      self.stepIndicatorLabel.text = "3"
+      self.pageNameLabel.text = self.viewModel.step3ToolBarTitle
     default:
       break
     }
