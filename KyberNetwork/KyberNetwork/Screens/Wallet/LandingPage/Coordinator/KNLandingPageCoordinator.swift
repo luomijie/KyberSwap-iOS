@@ -174,7 +174,8 @@ extension KNLandingPageCoordinator: KNLandingPageViewControllerDelegate {
       firstButtonTitle: "Ok".toBeLocalised(),
       secondButtonAction: nil) {
         self.navigationController.dismiss(animated: true) {
-          let tutorialVC = KNMigrationTutorialViewController()
+          let viewModel = KNMigrationTutorialViewModel()
+          let tutorialVC = KNMigrationTutorialViewController(viewModel: viewModel)
           self.navigationController.present(tutorialVC, animated: true, completion: nil)
         }
       }
