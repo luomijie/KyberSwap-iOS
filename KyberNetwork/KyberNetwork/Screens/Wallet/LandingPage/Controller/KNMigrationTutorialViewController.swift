@@ -119,13 +119,13 @@ class KNMigrationTutorialViewModel {
       let attributedString = NSMutableAttributedString(string: formattedString)
       
       attributedString.addAttributes(
-        [NSAttributedStringKey.paragraphStyle : paragraphStyle],
-        range: NSMakeRange(0, attributedString.length)
+        [NSAttributedStringKey.paragraphStyle: paragraphStyle],
+        range: NSRange(location: 0, length: attributedString.length)
       )
       
       attributedString.addAttributes(
         textAttributes,
-        range: NSMakeRange(0, attributedString.length)
+        range: NSRange(location: 0, length: attributedString.length)
       )
       
       let string:NSString = NSString(string: formattedString)
@@ -168,6 +168,8 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   @IBOutlet weak var finalStepOptionalLabel: UILabel!
   @IBOutlet weak var finalStepContent2Label: UILabel!
   @IBOutlet weak var finalStepBottomLabel: UILabel!
+  @IBOutlet weak var headerContainerView: UIView!
+  @IBOutlet weak var pageControl: FSPageControl!
 
   var viewModel: KNMigrationTutorialViewModel
 
@@ -187,11 +189,19 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.finalStepContent2Label.attributedText = self.viewModel.optionalContentString
     self.finalStepBottomLabel.attributedText = self.viewModel.bottomContactText
     self.view.sendSubview(toBack: self.finalStepContainerView)
+    self.headerContainerView.applyGradient(with: UIColor.Kyber.headerColors)
+    self.pageControl.numberOfPages = self.viewModel.step1DataSource.keys.count
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.pagerContainerView.itemSize = self.pagerContainerView.frame.size.applying(CGAffineTransform(scaleX: 0.85, y: 1.0))
     self.pagerContainerView.interitemSpacing = 15
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    self.headerContainerView.removeSublayer(at: 0)
+    self.headerContainerView.applyGradient(with: UIColor.Kyber.headerColors)
   }
 
   @IBAction func closeButtonTapped(_ sender: UIButton) {
@@ -229,8 +239,10 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   }
 
   @IBAction func nextButtonTapped(_ sender: UIButton) {
-    guard self.viewModel.currentStep < 3 else {
-      return
+    if self.viewModel.currentStep == 3 {
+      self.dismiss(animated: true, completion: nil)
+    } else {
+      self.nextStepButtonTapped(sender)
     }
   }
 
@@ -243,12 +255,18 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     case 1:
       self.stepIndicatorLabel.text = "1"
       self.pageNameLabel.text = self.viewModel.step1ToolBarTitle
+      self.nextBottomButton.setTitle("next".toBeLocalised().uppercased(), for: .normal)
+      self.pageControl.numberOfPages = self.viewModel.step1DataSource.keys.count
     case 2:
       self.stepIndicatorLabel.text = "2"
       self.pageNameLabel.text = self.viewModel.step2ToolBarTitle
+      self.nextBottomButton.setTitle("next".toBeLocalised().uppercased(), for: .normal)
+      self.pageControl.numberOfPages = self.viewModel.step2DataSource.keys.count
     case 3:
       self.stepIndicatorLabel.text = "3"
       self.pageNameLabel.text = self.viewModel.step3ToolBarTitle
+      self.nextBottomButton.setTitle("done".toBeLocalised().uppercased(), for: .normal)
+      self.pageControl.numberOfPages = 0
     default:
       break
     }
@@ -291,5 +309,11 @@ extension KNMigrationTutorialViewController: FSPagerViewDataSource {
       break
     }
     return cell
+  }
+}
+
+extension KNMigrationTutorialViewController: FSPagerViewDelegate {
+  func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
+      self.pageControl.currentPage = targetIndex
   }
 }

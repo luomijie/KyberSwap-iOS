@@ -24,9 +24,11 @@
                 <outlet property="finalStepContent2Label" destination="p0M-af-dOb" id="KbV-II-y9K"/>
                 <outlet property="finalStepHeaderLabel" destination="aPW-2e-CSr" id="ovo-eo-ima"/>
                 <outlet property="finalStepOptionalLabel" destination="cHa-sW-5ve" id="7Dq-SW-gXw"/>
+                <outlet property="headerContainerView" destination="Fx0-Yf-ZMz" id="UzK-J7-ZY7"/>
                 <outlet property="headerTitleLabel" destination="i70-uH-SkP" id="vbC-OG-qkq"/>
                 <outlet property="nextBottomButton" destination="P6I-de-P1Z" id="tnY-sZ-a6b"/>
                 <outlet property="nextButton" destination="HmE-uU-hMw" id="pkU-EF-bOt"/>
+                <outlet property="pageControl" destination="vR5-f6-956" id="y17-BQ-A0x"/>
                 <outlet property="pageNameLabel" destination="VDE-3d-dqs" id="Koz-qN-vTg"/>
                 <outlet property="pagerContainerView" destination="CRY-x3-IgC" id="PTy-ab-DG3"/>
                 <outlet property="previousButton" destination="Ji7-kB-lbe" id="3jw-fS-7Bl"/>
@@ -43,7 +45,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to migration to new IOS app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i70-uH-SkP">
-                            <rect key="frame" x="20" y="41" width="269" height="21"/>
+                            <rect key="frame" x="20" y="41" width="264" height="21"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -74,7 +76,7 @@
                     <rect key="frame" x="0.0" y="82" width="375" height="36"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy8-eP-pX8">
-                            <rect key="frame" x="107" y="8" width="161" height="20"/>
+                            <rect key="frame" x="108.5" y="8" width="158.5" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-R8-gBu">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -88,7 +90,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backup your wallets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDE-3d-dqs">
-                                    <rect key="frame" x="34" y="0.0" width="127" height="20"/>
+                                    <rect key="frame" x="34" y="0.0" width="124.5" height="20"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <color key="textColor" red="0.3529411764705882" green="0.36862745098039218" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -146,7 +148,7 @@
                         <constraint firstAttribute="height" constant="50" id="XE2-dT-C8g"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
-                    <state key="normal" title="Next">
+                    <state key="normal" title="NEXT">
                         <color key="titleColor" red="1" green="0.56470588235294117" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -160,19 +162,11 @@
                         <constraint firstAttribute="height" constant="1" id="EdV-fs-uks"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-x3-IgC" customClass="FSPagerView" customModule="FSPagerView">
-                    <rect key="frame" x="0.0" y="118" width="375" height="498"/>
-                    <color key="backgroundColor" red="0.88235294117647056" green="0.89411764705882346" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="70Q-8A-vqd"/>
-                        <outlet property="delegate" destination="-1" id="KLw-UI-XMK"/>
-                    </connections>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yup-s9-fU3">
                     <rect key="frame" x="0.0" y="118" width="375" height="498"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Within this New KyberSwap app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPW-2e-CSr">
-                            <rect key="frame" x="101" y="16" width="173" height="14"/>
+                            <rect key="frame" x="102.5" y="16" width="170" height="14"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                             <color key="textColor" red="0.35294117650000001" green="0.36862745099999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,6 +234,33 @@
                         <constraint firstItem="aPW-2e-CSr" firstAttribute="top" secondItem="yup-s9-fU3" secondAttribute="top" constant="16" id="x4I-WX-Xye"/>
                         <constraint firstItem="Jft-3U-xPg" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="135" id="zHo-06-xo2"/>
                     </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-x3-IgC" customClass="FSPagerView" customModule="FSPagerView">
+                    <rect key="frame" x="0.0" y="118" width="375" height="498"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vR5-f6-956" customClass="FSPageControl" customModule="FSPagerView">
+                            <rect key="frame" x="0.0" y="453" width="375" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="w0x-9V-Fv4"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                    <integer key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.88235294117647056" green="0.89411764705882346" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="vR5-f6-956" secondAttribute="bottom" constant="15" id="29X-Zk-woZ"/>
+                        <constraint firstAttribute="trailing" secondItem="vR5-f6-956" secondAttribute="trailing" id="UXR-w7-O8M"/>
+                        <constraint firstItem="vR5-f6-956" firstAttribute="leading" secondItem="CRY-x3-IgC" secondAttribute="leading" id="ZlT-wK-8hH"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="70Q-8A-vqd"/>
+                        <outlet property="delegate" destination="-1" id="KLw-UI-XMK"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
