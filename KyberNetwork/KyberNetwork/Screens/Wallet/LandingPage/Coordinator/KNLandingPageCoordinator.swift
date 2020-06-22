@@ -4,6 +4,7 @@ import UIKit
 import SafariServices
 import TrustKeystore
 import TrustCore
+import MessageUI
 
 protocol KNLandingPageCoordinatorDelegate: class {
   func landingPageCoordinator(import wallet: Wallet)
@@ -23,7 +24,7 @@ protocol KNLandingPageCoordinatorDelegate: class {
   - Enter wallet name
   - Enter passcode (if it is the first wallet)
  */
-class KNLandingPageCoordinator: Coordinator {
+class KNLandingPageCoordinator: NSObject, Coordinator {
 
   weak var delegate: KNLandingPageCoordinatorDelegate?
   let navigationController: UINavigationController
@@ -176,9 +177,10 @@ extension KNLandingPageCoordinator: KNLandingPageViewControllerDelegate {
         self.navigationController.dismiss(animated: true) {
           let viewModel = KNMigrationTutorialViewModel()
           let tutorialVC = KNMigrationTutorialViewController(viewModel: viewModel)
+          tutorialVC.delegate = self
           self.navigationController.present(tutorialVC, animated: true, completion: nil)
         }
-      }
+    }
     self.navigationController.present(alert, animated: true, completion: nil)
   }
 }
@@ -236,5 +238,32 @@ extension KNLandingPageCoordinator: KNPromoCodeCoordinatorDelegate {
       expiredTime: expiredDate
     )
     self.addNewWallet(wallet, isCreate: false, name: name, addToContact: false)
+  }
+}
+
+extension KNLandingPageCoordinator: KNMigrationTutorialViewControllerDelegate {
+  func kMigrationTutorialViewControllerDidClickKyberSupportContact(_ controller: KNMigrationTutorialViewController) {
+    if MFMailComposeViewController.canSendMail() {
+      let emailVC = MFMailComposeViewController()
+      emailVC.mailComposeDelegate = self
+      emailVC.setToRecipients(["support@kyberswap.com"])
+      self.navigationController.present(emailVC, animated: true, completion: nil)
+    } else {
+      let message = NSLocalizedString(
+        "please.send.your.request.to.support",
+        value: "Please send your request to support@kyberswap.com",
+        comment: ""
+      )
+      self.navigationController.showWarningTopBannerMessage(with: "", message: message, time: 1.5)
+    }
+  }
+}
+
+extension KNLandingPageCoordinator: MFMailComposeViewControllerDelegate {
+  func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    if case .sent = result {
+      KNCrashlyticsUtil.logCustomEvent(withName: "landing_page_email_sent", customAttributes: nil)
+    }
+    controller.dismiss(animated: true, completion: nil)
   }
 }

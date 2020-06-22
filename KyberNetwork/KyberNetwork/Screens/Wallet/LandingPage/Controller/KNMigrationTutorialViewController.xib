@@ -162,6 +162,33 @@
                         <constraint firstAttribute="height" constant="1" id="EdV-fs-uks"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-x3-IgC" customClass="FSPagerView" customModule="FSPagerView">
+                    <rect key="frame" x="0.0" y="118" width="375" height="498"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vR5-f6-956" customClass="FSPageControl" customModule="FSPagerView">
+                            <rect key="frame" x="0.0" y="453" width="375" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="w0x-9V-Fv4"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                    <integer key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.88235294117647056" green="0.89411764705882346" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="vR5-f6-956" secondAttribute="bottom" constant="15" id="29X-Zk-woZ"/>
+                        <constraint firstAttribute="trailing" secondItem="vR5-f6-956" secondAttribute="trailing" id="UXR-w7-O8M"/>
+                        <constraint firstItem="vR5-f6-956" firstAttribute="leading" secondItem="CRY-x3-IgC" secondAttribute="leading" id="ZlT-wK-8hH"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="70Q-8A-vqd"/>
+                        <outlet property="delegate" destination="-1" id="KLw-UI-XMK"/>
+                    </connections>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yup-s9-fU3">
                     <rect key="frame" x="0.0" y="118" width="375" height="498"/>
                     <subviews>
@@ -235,33 +262,6 @@
                         <constraint firstItem="Jft-3U-xPg" firstAttribute="leading" secondItem="yup-s9-fU3" secondAttribute="leading" constant="135" id="zHo-06-xo2"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-x3-IgC" customClass="FSPagerView" customModule="FSPagerView">
-                    <rect key="frame" x="0.0" y="118" width="375" height="498"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vR5-f6-956" customClass="FSPageControl" customModule="FSPagerView">
-                            <rect key="frame" x="0.0" y="453" width="375" height="30"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="w0x-9V-Fv4"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
-                                    <integer key="value" value="4"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.88235294117647056" green="0.89411764705882346" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="vR5-f6-956" secondAttribute="bottom" constant="15" id="29X-Zk-woZ"/>
-                        <constraint firstAttribute="trailing" secondItem="vR5-f6-956" secondAttribute="trailing" id="UXR-w7-O8M"/>
-                        <constraint firstItem="vR5-f6-956" firstAttribute="leading" secondItem="CRY-x3-IgC" secondAttribute="leading" id="ZlT-wK-8hH"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="70Q-8A-vqd"/>
-                        <outlet property="delegate" destination="-1" id="KLw-UI-XMK"/>
-                    </connections>
-                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <gestureRecognizers/>
@@ -289,9 +289,6 @@
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="QLT-LE-WW3" appends="YES" id="MIb-4r-68V"/>
-            </connections>
             <point key="canvasLocation" x="132" y="147.97601199400302"/>
         </view>
         <tapGestureRecognizer id="QLT-LE-WW3">

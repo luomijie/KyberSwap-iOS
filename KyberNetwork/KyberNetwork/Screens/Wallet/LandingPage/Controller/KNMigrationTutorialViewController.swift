@@ -4,38 +4,55 @@ import UIKit
 import FSPagerView
 import MessageUI
 
+protocol KNMigrationTutorialViewControllerDelegate: class {
+  func kMigrationTutorialViewControllerDidClickKyberSupportContact(_ controller: KNMigrationTutorialViewController)
+}
+
 class KNMigrationTutorialViewModel {
   var currentStep: Int = 1
-  
+
   var step1DataSource: [String: NSMutableAttributedString] {
-    let step1AttributeString = NSMutableAttributedString(string: "Go to Settings → Manage Wallet.", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
-    step1AttributeString.addAttribute(.font, value: UIFont(name: "Roboto-Medium", size: 14.0)!, range: NSRange(location: 15, length: 1))
-    
-    let step2AttributeString = NSMutableAttributedString(string: "Choose the wallet you want to back up → Select Edit ", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
-    step2AttributeString.addAttribute(.font, value: UIFont(name: "Roboto-Medium", size: 14.0)!, range: NSRange(location: 38, length: 1))
-    
-    let step3AttributeString = NSMutableAttributedString(string: "Select Show Backup Phrase → Choose your desired back up method (Private key, Keystore, Mnemonic)", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
-    step3AttributeString.addAttribute(.font, value: UIFont(name: "Roboto-Medium", size: 14.0)!, range: NSRange(location: 26, length: 1))
-    
-    let step4AttributeString = NSMutableAttributedString(string: "Save your backup safely\nNEVER share your backup with anyone", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
-    step4AttributeString.addAttribute(.font, value: UIFont(name: "Roboto-Medium", size: 14.0)!, range: NSRange(location: 24, length: 5))
-    
+    let step1AttributeString = NSMutableAttributedString(
+      string: "Go to Settings → Manage Wallet.",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
+
+    let step2AttributeString = NSMutableAttributedString(
+      string: "Choose the wallet you want to back up → Select Edit ",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
+
+    let step3AttributeString = NSMutableAttributedString(
+      string: "Select Show Backup Phrase → Choose your desired back up method (Private key, Keystore, Mnemonic)",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
+
+    let step4AttributeString = NSMutableAttributedString(
+      string: "Save your backup safely\nNEVER share your backup with anyone",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
+    step4AttributeString.string.enumerateSubstrings(in: step4AttributeString.string.startIndex..<step4AttributeString.string.endIndex, options: .byWords) { (substring, substringRange, _, _) in
+      if substring == "NEVER" {
+        step4AttributeString.addAttribute(.font, value: UIFont(name: "Roboto-Medium", size: 14.0)!, range: NSRange(substringRange, in: step4AttributeString.string))
+      }
+    }
+
     return [
       "tutorial_1_1": step1AttributeString,
       "tutorial_1_2": step2AttributeString,
@@ -43,37 +60,43 @@ class KNMigrationTutorialViewModel {
       "tutorial_1_4": step4AttributeString,
     ]
   }
-  
+
   var step1HeaderTitle: String {
     return "In your old KyberSwap app"
   }
-  
+
   var step1ToolBarTitle: String {
     return "Backup your wallets"
   }
-  
+
   var step2DataSource: [String: NSMutableAttributedString] {
-    let step1AttributeString = NSMutableAttributedString(string: "Select Import Wallet", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
+    let step1AttributeString = NSMutableAttributedString(
+      string: "Select Import Wallet",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
     
-    let step2AttributeString = NSMutableAttributedString(string: "Choose your desired import method (Keystore, Private Key, Seeds)", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
+    let step2AttributeString = NSMutableAttributedString(
+      string: "Choose your desired import method (Keystore, Private Key, Seeds)",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 14.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
     return [
       "tutorial_2_1": step1AttributeString,
       "tutorial_2_2": step2AttributeString,
     ]
   }
-  
+
   var step2HeaderTitle: String {
     return "Within this New KyberSwap app"
   }
-  
+
   var step2ToolBarTitle: String {
     return "Use your backup to import wallet "
   }
@@ -81,15 +104,15 @@ class KNMigrationTutorialViewModel {
   var step3HeaderTitle: String {
     return "Within this New KyberSwap app"
   }
-  
+
   var step3ToolBarTitle: String {
     return "Check your Balance"
   }
-  
+
   var optionalContentString: NSAttributedString {
     let stringList = [
       "Make a simple transfer/swap transaction to make sure everything is working as expected.",
-      "You can either keep or delete the old iOS app."
+      "You can either keep or delete the old iOS app.",
     ]
     let indentation: CGFloat = 20
     let lineSpacing: CGFloat = 2
@@ -104,10 +127,11 @@ class KNMigrationTutorialViewModel {
     let paragraphStyle = NSMutableParagraphStyle()
     let nonOptions = [NSTextTab.OptionKey: Any]()
     paragraphStyle.tabStops = [
-      NSTextTab(textAlignment: .left,
-                location: indentation,
-                options: nonOptions
-      )
+      NSTextTab(
+        textAlignment: .left,
+        location: indentation,
+        options: nonOptions
+      ),
     ]
     paragraphStyle.defaultTabInterval = indentation
     paragraphStyle.lineSpacing = lineSpacing
@@ -117,34 +141,41 @@ class KNMigrationTutorialViewModel {
     for string in stringList {
       let formattedString = "\(bullet)\t\(string)\n"
       let attributedString = NSMutableAttributedString(string: formattedString)
-      
+
       attributedString.addAttributes(
         [NSAttributedStringKey.paragraphStyle: paragraphStyle],
         range: NSRange(location: 0, length: attributedString.length)
       )
-      
+
       attributedString.addAttributes(
         textAttributes,
         range: NSRange(location: 0, length: attributedString.length)
       )
-      
-      let string:NSString = NSString(string: formattedString)
-      let rangeForBullet:NSRange = string.range(of: bullet)
+
+      let string: NSString = NSString(string: formattedString)
+      let rangeForBullet: NSRange = string.range(of: bullet)
       attributedString.addAttributes(bulletAttributes, range: rangeForBullet)
       bulletList.append(attributedString)
     }
-    
     return bulletList
   }
 
   var bottomContactText: NSAttributedString {
-    let attributedString = NSMutableAttributedString(string: "Send email to support@kyberswap.com if you have any issues.", attributes: [
-      .font: UIFont(name: "Roboto-Regular", size: 12.0)!,
-      .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
-      .kern: 0.0
-    ])
+    let attributedString = NSMutableAttributedString(
+      string: "Send email to support@kyberswap.com if you have any issues.",
+      attributes: [
+        .font: UIFont(name: "Roboto-Regular", size: 12.0)!,
+        .foregroundColor: UIColor(red: 20.0 / 255.0, green: 25.0 / 255.0, blue: 39.0 / 255.0, alpha: 1.0),
+        .kern: 0.0,
+      ]
+    )
+    attributedString.string.enumerateSubstrings(in: attributedString.string.startIndex..<attributedString.string.endIndex, options: .byWords) { (substring, substringRange, _, _) in
+        if substring == "support@kyberswap.com" {
+          attributedString.addAttribute(.foregroundColor, value: UIColor.Kyber.orange, range: NSRange(substringRange, in: attributedString.string))
+        }
+    }
+
     attributedString.addAttribute(.foregroundColor, value: UIColor.Kyber.orange, range: NSRange(location: 14, length: 21))
-    
     return attributedString
   }
 }
@@ -171,6 +202,8 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   @IBOutlet weak var headerContainerView: UIView!
   @IBOutlet weak var pageControl: FSPageControl!
 
+  weak var delegate: KNMigrationTutorialViewControllerDelegate?
+
   var viewModel: KNMigrationTutorialViewModel
 
   init(viewModel: KNMigrationTutorialViewModel) {
@@ -191,6 +224,9 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.view.sendSubview(toBack: self.finalStepContainerView)
     self.headerContainerView.applyGradient(with: UIColor.Kyber.headerColors)
     self.pageControl.numberOfPages = self.viewModel.step1DataSource.keys.count
+    self.pageControl.setFillColor(UIColor.Kyber.orange, for: .selected)
+    self.pageControl.setFillColor(UIColor.Kyber.lightPeriwinkle, for: .normal)
+    self.pageControl.itemSpacing = 9.6
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -247,7 +283,7 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   }
 
   @IBAction func contactLabelTapped(_ sender: UITapGestureRecognizer) {
-    //TODO: open mail
+    self.delegate?.kMigrationTutorialViewControllerDidClickKyberSupportContact(self)
   }
 
   fileprivate func refreshUI() {
