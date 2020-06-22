@@ -187,6 +187,7 @@ class KNMigrationTutorialViewController: KNBaseViewController {
   @IBOutlet weak var pagerContainerView: FSPagerView! {
     didSet {
       self.pagerContainerView.register(UINib(nibName: "KNTutorialPagerCell", bundle: .main), forCellWithReuseIdentifier: "tutorialCell")
+      self.pagerContainerView.register(UINib(nibName: "KNTutorialPagerWithAccessoryCell", bundle: .main), forCellWithReuseIdentifier: "tutorialCellWithAccessory")
     }
   }
   @IBOutlet weak var nextButton: UIButton!
@@ -227,11 +228,18 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.pageControl.setFillColor(UIColor.Kyber.orange, for: .selected)
     self.pageControl.setFillColor(UIColor.Kyber.lightPeriwinkle, for: .normal)
     self.pageControl.itemSpacing = 9.6
+    self.pagerContainerView.alpha = 0
+    self.finalStepContainerView.alpha = 0
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.pagerContainerView.itemSize = self.pagerContainerView.frame.size.applying(CGAffineTransform(scaleX: 0.85, y: 1.0))
     self.pagerContainerView.interitemSpacing = 15
+    UIView.animate(withDuration: 0.1, animations: {
+      self.pagerContainerView.alpha = 1
+    }, completion: { (_) in
+      self.finalStepContainerView.alpha = 1
+    })
   }
 
   override func viewDidLayoutSubviews() {
@@ -271,7 +279,11 @@ class KNMigrationTutorialViewController: KNBaseViewController {
       self.view.bringSubview(toFront: self.finalStepContainerView)
     }
     self.refreshUI()
-    self.pagerContainerView.reloadData()
+    if self.viewModel.currentStep < 3 {
+      self.pagerContainerView.scrollToItem(at: 0, animated: false)
+      self.pageControl.currentPage = 0
+      self.pagerContainerView.reloadData()
+    }
   }
 
   @IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -302,7 +314,6 @@ class KNMigrationTutorialViewController: KNBaseViewController {
       self.stepIndicatorLabel.text = "3"
       self.pageNameLabel.text = self.viewModel.step3ToolBarTitle
       self.nextBottomButton.setTitle("done".toBeLocalised().uppercased(), for: .normal)
-      self.pageControl.numberOfPages = 0
     default:
       break
     }
@@ -322,6 +333,17 @@ extension KNMigrationTutorialViewController: FSPagerViewDataSource {
   }
 
   public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+    if self.viewModel.currentStep == 1 && index == 3 {
+      let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "tutorialCellWithAccessory", at: index) as! KNTutorialPagerCell
+      let imageName = "tutorial_1_4"
+      cell.contentImageView.image = UIImage(named: imageName)
+      if let text = self.viewModel.step1DataSource[imageName] {
+        cell.contentLabel.attributedText = text
+      } else {
+        cell.contentLabel.attributedText = NSAttributedString()
+      }
+      return cell
+    }
     let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "tutorialCell", at: index) as! KNTutorialPagerCell
     let step = self.viewModel.currentStep
     let imageName = "tutorial_\(step)_\(index + 1)"

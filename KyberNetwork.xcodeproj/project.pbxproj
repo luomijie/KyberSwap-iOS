@@ -562,6 +562,7 @@
 		C356C009243DAE9F007E419B /* KNMarketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356C007243DAE9F007E419B /* KNMarketTableViewCell.swift */; };
 		C356C00A243DAE9F007E419B /* KNMarketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C356C008243DAE9F007E419B /* KNMarketTableViewCell.xib */; };
 		C356C011243DC6E7007E419B /* KNSelectMarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356C010243DC6E7007E419B /* KNSelectMarketViewModel.swift */; };
+		C37AC1E424A0874200D0DF5B /* KNTutorialPagerWithAccessoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C37AC1E324A0874200D0DF5B /* KNTutorialPagerWithAccessoryCell.xib */; };
 		C37CC092245803CA0081FB32 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37CC085245803C90081FB32 /* Roboto-Medium.ttf */; };
 		C37CC093245803CA0081FB32 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37CC086245803C90081FB32 /* Roboto-Light.ttf */; };
 		C37CC094245803CA0081FB32 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37CC087245803C90081FB32 /* Roboto-Regular.ttf */; };
@@ -1224,6 +1225,7 @@
 		C356C008243DAE9F007E419B /* KNMarketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNMarketTableViewCell.xib; sourceTree = "<group>"; };
 		C356C010243DC6E7007E419B /* KNSelectMarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNSelectMarketViewModel.swift; sourceTree = "<group>"; };
 		C364819324726B1200137596 /* KyberSwap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KyberSwap-Bridging-Header.h"; sourceTree = "<group>"; };
+		C37AC1E324A0874200D0DF5B /* KNTutorialPagerWithAccessoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNTutorialPagerWithAccessoryCell.xib; sourceTree = "<group>"; };
 		C37CC085245803C90081FB32 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		C37CC086245803C90081FB32 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		C37CC087245803C90081FB32 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -4072,6 +4074,7 @@
 			children = (
 				C399118A249B553100A7C251 /* KNTutorialPagerCell.swift */,
 				C399118B249B553100A7C251 /* KNTutorialPagerCell.xib */,
+				C37AC1E324A0874200D0DF5B /* KNTutorialPagerWithAccessoryCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -4435,6 +4438,7 @@
 				25073D21211AF20D00833C92 /* Montserrat-Bold.ttf in Resources */,
 				25929C5720DA5C760045CFA3 /* SF-Pro-Display-MediumItalic.otf in Resources */,
 				25929C6E20DA5C760045CFA3 /* SF-Pro-Display-Thin.otf in Resources */,
+				C37AC1E424A0874200D0DF5B /* KNTutorialPagerWithAccessoryCell.xib in Resources */,
 				2596873B211EA4360080A33F /* KAdvancedSettingsView.xib in Resources */,
 				25929C9520DA5CC10045CFA3 /* SFCompactText-Heavy.otf in Resources */,
 				25F1BAD921BBA7D200A36900 /* config_env_ropsten2.json in Resources */,
