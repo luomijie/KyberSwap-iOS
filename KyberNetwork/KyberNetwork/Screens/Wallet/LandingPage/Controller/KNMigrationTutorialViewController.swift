@@ -10,6 +10,7 @@ protocol KNMigrationTutorialViewControllerDelegate: class {
 
 class KNMigrationTutorialViewModel {
   var currentStep: Int = 1
+  var currentSubStepIndex: Int = 0
 
   var step1DataSource: [String: NSMutableAttributedString] {
     let step1AttributeString = NSMutableAttributedString(
@@ -252,28 +253,40 @@ class KNMigrationTutorialViewController: KNBaseViewController {
     self.dismiss(animated: true, completion: nil)
   }
 
-  @IBAction func previousStepButtonTapped(_ sender: UIButton) {
-    guard self.viewModel.currentStep > 1 else {
-      return
-    }
+  fileprivate func moveBackMainStep() {
     if self.viewModel.currentStep == 3 {
       self.view.bringSubview(toFront: self.pagerContainerView)
     }
     self.viewModel.currentStep -= 1
-    self.nextButton.isEnabled = true
-    if self.viewModel.currentStep == 1 {
-      self.previousButton.isEnabled = false
-    }
     self.refreshUI()
     self.pagerContainerView.reloadData()
   }
 
-  @IBAction func nextStepButtonTapped(_ sender: UIButton) {
-    guard self.viewModel.currentStep < 3 else {
-      return
+  @IBAction func previousStepButtonTapped(_ sender: UIButton) {
+    if (self.viewModel.currentStep == 1 && self.viewModel.currentSubStepIndex != 0) || (self.viewModel.currentStep == 2 && self.viewModel.currentSubStepIndex != 0) {
+      self.viewModel.currentSubStepIndex -= 1
+      self.pagerContainerView.scrollToItem(at: self.viewModel.currentSubStepIndex, animated: true)
+      self.pageControl.currentPage = self.viewModel.currentSubStepIndex
+    } else {
+      self.moveBackMainStep()
+      if self.viewModel.currentStep == 1 {
+        self.viewModel.currentSubStepIndex = 3
+      } else if self.viewModel.currentStep == 2 {
+        self.viewModel.currentSubStepIndex = 1
+      }
+      self.pageControl.currentPage = self.viewModel.currentSubStepIndex
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+          self.pagerContainerView.scrollToItem(at: self.viewModel.currentSubStepIndex, animated: false)
+      }
     }
+    self.nextButton.isEnabled = true
+    if self.viewModel.currentStep == 1 && self.viewModel.currentSubStepIndex == 0 {
+      self.previousButton.isEnabled = false
+    }
+  }
+
+  fileprivate func moveToNextMainStep() {
     self.viewModel.currentStep += 1
-    self.previousButton.isEnabled = true
     if self.viewModel.currentStep == 3 {
       self.nextButton.isEnabled = false
       self.view.bringSubview(toFront: self.finalStepContainerView)
@@ -284,6 +297,19 @@ class KNMigrationTutorialViewController: KNBaseViewController {
       self.pageControl.currentPage = 0
       self.pagerContainerView.reloadData()
     }
+  }
+
+  @IBAction func nextStepButtonTapped(_ sender: UIButton) {
+    if (self.viewModel.currentStep == 1 && self.viewModel.currentSubStepIndex <= 2) || (self.viewModel.currentStep == 2 && self.viewModel.currentSubStepIndex == 0) {
+      self.viewModel.currentSubStepIndex += 1
+      self.pagerContainerView.scrollToItem(at: self.viewModel.currentSubStepIndex, animated: true)
+      self.pageControl.currentPage = self.viewModel.currentSubStepIndex
+    } else {
+      self.viewModel.currentSubStepIndex = 0
+      self.moveToNextMainStep()
+      self.pageControl.currentPage = self.viewModel.currentSubStepIndex
+    }
+    self.previousButton.isEnabled = true
   }
 
   @IBAction func nextButtonTapped(_ sender: UIButton) {
@@ -372,6 +398,12 @@ extension KNMigrationTutorialViewController: FSPagerViewDataSource {
 
 extension KNMigrationTutorialViewController: FSPagerViewDelegate {
   func pagerViewWillEndDragging(_ pagerView: FSPagerView, targetIndex: Int) {
-      self.pageControl.currentPage = targetIndex
+    self.pageControl.currentPage = targetIndex
+    self.viewModel.currentSubStepIndex = targetIndex
+    if self.viewModel.currentStep == 1 && self.viewModel.currentSubStepIndex == 0 {
+      self.previousButton.isEnabled = false
+    } else {
+      self.previousButton.isEnabled = true
+    }
   }
 }
