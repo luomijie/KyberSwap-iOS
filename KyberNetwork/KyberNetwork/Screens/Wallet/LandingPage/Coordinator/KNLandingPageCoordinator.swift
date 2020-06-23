@@ -170,17 +170,19 @@ extension KNLandingPageCoordinator: KNLandingPageViewControllerDelegate {
   fileprivate func openMigrationAlert() {
     let alert = KNPrettyAlertController(
       title: "Information".toBeLocalised(),
-      message: "Do you have wallet for old IOS app and want to know how to migration it?".toBeLocalised(),
-      secondButtonTitle: "No".toBeLocalised(),
-      firstButtonTitle: "Ok".toBeLocalised(),
-      secondButtonAction: nil) {
+      message: "Have you installed the old KyberSwap iOS app? Read our guide on how to migrate your wallets to this new KyberSwap iOS app".toBeLocalised(),
+      secondButtonTitle: "OK".toBeLocalised(),
+      firstButtonTitle: "No".toBeLocalised(),
+      secondButtonAction: {
         self.navigationController.dismiss(animated: true) {
           let viewModel = KNMigrationTutorialViewModel()
           let tutorialVC = KNMigrationTutorialViewController(viewModel: viewModel)
           tutorialVC.delegate = self
           self.navigationController.present(tutorialVC, animated: true, completion: nil)
         }
-    }
+      },
+      firstButtonAction: nil
+    )
     self.navigationController.present(alert, animated: true, completion: nil)
   }
 }
