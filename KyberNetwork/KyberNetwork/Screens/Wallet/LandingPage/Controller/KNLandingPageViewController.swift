@@ -75,7 +75,7 @@ class KNLandingPageViewController: KNBaseViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if UserDefaults.standard.object(forKey: Constants.isShowMigrationTutorial) == nil {
+    if UserDefaults.standard.object(forKey: Constants.isShowMigrationTutorial) == nil || KNEnvironment.default == .ropsten {
       self.delegate?.landinagePageViewController(self, run: .openMigrationAlert)
       UserDefaults.standard.set(true, forKey: Constants.isShowMigrationTutorial)
     }
